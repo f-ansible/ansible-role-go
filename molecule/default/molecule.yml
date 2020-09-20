@@ -1,0 +1,18 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: "go-${image:-ubuntu}-${tag:-latest}"
+    image: "${image:-ubuntu}:${tag:-latest}"
+provisioner:
+  name: ansible
+  log: true
+lint: |
+  set -e
+  yamllint .
+verifier:
+  name: ansible

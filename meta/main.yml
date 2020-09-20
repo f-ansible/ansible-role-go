@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: go
+  author: Emmanuel Roux
+  description: Install go on Debian/Ubuntu systems
+  license: BSD
+  min_ansible_version: 2.9
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+  galaxy_tags:
+    []
+
+dependencies: []

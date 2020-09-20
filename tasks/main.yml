@@ -1,0 +1,31 @@
+---
+- name: Load role variables.
+  include_vars:
+    file: main.yml
+
+- name: Download Go.
+  get_url:
+    url: "{{ go_tarball['base_url'] }}/{{ go_tarball['base_name'] }}"
+    dest: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name']}}"
+    checksum: "{{ go_tarball['checksum'] }}"
+
+- name: Remove any former go installation.
+  file:
+    path: "{{ go_install_prefix }}/go"
+    state: absent
+  changed_when: false
+
+- name: Extract Go to the install directory.
+  unarchive:
+    src: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name']}}"
+    dest: "{{ go_install_prefix }}"
+    copy: no
+  changed_when: false
+
+- name: Add environment variables for bash compatible shells (Debian).
+  copy:
+    dest: "/etc/profile.d/ansible-role-go.sh"
+    mode: '644'
+    content: |
+      export GOPATH={{ go_path }}
+      export PATH=$GOPATH:{{ go_install_prefix }}/go/bin:$PATH          

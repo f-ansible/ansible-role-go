@@ -1,0 +1,19 @@
+---
+go_version: "1.15.2"
+
+go_platform: linux
+
+go_cpu_arch:
+  x86_64: amd64
+
+_checksums:
+  x86_64:
+    "1.15.2": "sha256:b49fda1ca29a1946d6bb2a5a6982cf07ccd2aba849289508ee0f9918f6bb4552"
+
+go_tarball:
+  base_name: "go{{ go_version }}.{{ go_platform }}-{{ go_cpu_arch[ansible_architecture] }}.tar.gz"
+  base_url: "https://golang.org/dl/"
+  checksum: "{{ _checksums[ansible_architecture][go_version] }}"
+  dest: "/usr/local/src"
+
+go_path: "$HOME/go"
