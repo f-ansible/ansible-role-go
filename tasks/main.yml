@@ -6,7 +6,7 @@
 - name: Download Go.
   get_url:
     url: "{{ go_tarball['base_url'] }}/{{ go_tarball['base_name'] }}"
-    dest: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name']}}"
+    dest: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name'] }}"
     checksum: "{{ go_tarball['checksum'] }}"
 
 - name: Remove any former go installation.
@@ -17,7 +17,7 @@
 
 - name: Extract Go to the install directory.
   unarchive:
-    src: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name']}}"
+    src: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name'] }}"
     dest: "{{ go_install_prefix }}"
     copy: no
   changed_when: false
@@ -25,7 +25,7 @@
 - name: Add environment variables for bash compatible shells (Debian).
   copy:
     dest: "/etc/profile.d/ansible-role-go.sh"
-    mode: '644'
+    mode: "644"
     content: |
       export GOPATH={{ go_path }}
-      export PATH=$GOPATH:{{ go_install_prefix }}/go/bin:$PATH          
+      export PATH=$GOPATH:{{ go_install_prefix }}/go/bin:$PATH
