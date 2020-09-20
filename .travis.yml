@@ -1,9 +1,6 @@
 ---
 sudo: required
-python:
-  - 3.7
-  - 3.8
-language: python
+language: generic
 services:
   - docker
 env:
@@ -13,8 +10,6 @@ env:
     - image="ubuntu" tag="xenial"
 before_install:
   - sudo apt-get -qq update
-install:
-  - python3 -m pip install molecule docker
 script:
   - molecule test
 notifications:
