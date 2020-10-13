@@ -20,6 +20,7 @@
     src: "{{ go_tarball['dest'] }}/{{ go_tarball['base_name'] }}"
     dest: "{{ go_install_prefix }}"
     copy: no
+    mode: '755'
   changed_when: false
 
 - name: Add environment variables for bash compatible shells (Debian).
@@ -27,5 +28,10 @@
     dest: "/etc/profile.d/ansible-role-go.sh"
     mode: "644"
     content: |
-      export GOPATH={{ go_path }}
-      export PATH=$GOPATH:{{ go_install_prefix }}/go/bin:$PATH
+      export GOPATH="{{ go_path }}"
+      export PATH="$GOPATH:{{ go_install_prefix }}/go/bin:$PATH"
+
+# - name: Source newly created file in profile.d
+#   environment:
+#     GOPATH: "{{ go_path }}"
+#     PATH: "$GOPATH:{{ go_install_prefix }}/go/bin:$PATH"

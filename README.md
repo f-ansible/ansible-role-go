@@ -29,4 +29,3 @@ This role installs the latest version from go
 ## License
 
 MIT/BSD
-
