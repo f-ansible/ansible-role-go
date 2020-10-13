@@ -18,6 +18,8 @@
         set -o pipefail &&
         "{{ go_install_prefix }}/go/bin/go" version |
         grep -F "{{ go_version }}"
+      args:
+        executable: /bin/bash
       register: go_version_test
       failed_when: go_version_test.rc != 0
       changed_when: false
