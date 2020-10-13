@@ -12,6 +12,12 @@ env:
     - image="ubuntu" tag="latest"
     - image="ubuntu" tag="bionic"
     - image="ubuntu" tag="xenial"
+jobs:
+  exclude:
+  - python: 3.9
+    # env:
+    # - image="ubuntu" tag="bionic"
+    # - image="ubuntu" tag="xenial"
 before_install:
   - sudo apt-get -qq update
 install:
